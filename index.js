@@ -12,12 +12,15 @@ app.use("/user/", require("./routes/user"));
 app.listen(5000, () => {
   const mongoose = require("mongoose");
   mongoose
-    .connect(process.end.MONGODB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    })
+    .connect(
+      `mongodb+srv://tiqu:${process.env.MONGODB_PASS}@cluster0.qhzyc.mongodb.net/cluster0?retryWrites=true&w=majority`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      }
+    )
     .then(() => console.log("Succesfully connected to the database..."))
     .catch((err) => console.log(err));
 });
